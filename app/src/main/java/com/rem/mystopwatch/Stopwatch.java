@@ -1,8 +1,10 @@
 package com.rem.mystopwatch;
 
 import android.os.Handler;
-import android.widget.ListView;
 import android.widget.TextView;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  * Created by anastasiyayuragina on 7/20/16.
@@ -28,10 +30,7 @@ class Stopwatch {
     void startStopwatch() {
         if (!isWorkStopwatch()) {
             startTime = System.currentTimeMillis();
-            millis = 0;
-            seconds = 0;
-            minutes = 0;
-            hours = 0;
+            millis = seconds = minutes = hours = 0;
             isWork = true;
             handler.post(showTime);
         }
@@ -42,14 +41,11 @@ class Stopwatch {
         isWork = false;
     }
 
-    public String circleStopwatch() {
-        String temp = String.format("%02d:%02d:%02d:%02d", hours, minutes, seconds, (millis %= 10));
+    String circleStopwatch() {
+        String temp = String.format("%02d:%02d:%02d:%02d", hours, minutes, seconds, (millis %= 100));
         handler.removeCallbacks(showTime);
         startTime = System.currentTimeMillis();
-        millis = 0;
-        seconds = 0;
-        minutes = 0;
-        hours = 0;
+        millis = seconds = minutes = hours = 0;
 
         if (isWork) {
             isWork = false;
@@ -62,12 +58,9 @@ class Stopwatch {
     void clearStopwatch() {
         handler.removeCallbacks(showTime);
         isWork = false;
-        millis = 0;
-        seconds = 0;
-        minutes = 0;
-        hours = 0;
+        millis = seconds = minutes = hours = 0;
 
-        view.setText(String.format("%02d:%02d:%02d:%02d", hours, minutes, seconds, (millis %= 10)));
+        view.setText(String.format("%02d:%02d:%02d:%02d", hours, minutes, seconds, (millis %= 100)));
     }
 
     private boolean isWorkStopwatch() {
@@ -78,13 +71,15 @@ class Stopwatch {
         @Override
         public void run() {
             millis = System.currentTimeMillis() - startTime;
-            seconds = (int) (millis / 1000);
-            minutes = seconds / 60;
-            hours = minutes / 60;
-            seconds %= 60;
+            Date time = new Date(millis);
+            Calendar times = new GregorianCalendar();
+            times.setTime(time);
+            seconds = times.get(Calendar.SECOND);
+            minutes = times.get(Calendar.MINUTE);
+            hours = times.get(Calendar.HOUR) - 3;
 
-            view.setText(String.format("%02d:%02d:%02d:%02d", hours, minutes, seconds, (millis %= 10)));
-            handler.postDelayed(showTime, 10);
+            view.setText(String.format("%02d:%02d:%02d:%02d", hours, minutes, seconds, (millis %= 100)));
+            handler.postDelayed(showTime, 80);
         }
     };
 

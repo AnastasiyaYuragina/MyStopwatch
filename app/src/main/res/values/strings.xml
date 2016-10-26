@@ -3,5 +3,5 @@
     <string name="circle">Circle</string>
     <string name="stop">Stop</string>
     <string name="start">Start</string>
-    <string name="start_time">00 : 00 : 00</string>
+    <string name="start_time">00:00:00:00</string>
 </resources>
