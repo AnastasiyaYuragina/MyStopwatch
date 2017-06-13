@@ -6,7 +6,6 @@
     tools:context="com.rem.mystopwatch.MainActivity"
     android:background="@color/colorPrimary">
 
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,58 +14,63 @@
         android:text="@string/start_time"
         android:id="@+id/time_view"
         android:layout_below="@+id/start"
-        android:textColor="@android:color/white"
-        android:layout_toLeftOf="@+id/clearTimer"
-        android:layout_toStartOf="@+id/clearTimer" />
+        android:textColor="@android:color/white" />
 
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/circle_list"
-        android:layout_below="@+id/time_view"
         tools:listitem="@layout/item"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp" />
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_below="@+id/time_view"
+        android:layout_alignEnd="@+id/clearTimer"
+        android:layout_above="@+id/clearTimer" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:text="@string/start"
         android:id="@+id/start"
         android:layout_alignParentTop="true"
-        android:layout_margin="10dp"
-        android:onClick="onClickStart"/>
+        android:textColor="@android:color/white"
+        android:layout_margin="8dp"
+        android:onClick="onClickStart"
+        android:background="@drawable/button_style"/>
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:text="@string/stop"
         android:id="@+id/stop"
+        android:textColor="@android:color/white"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_margin="10dp"
-        android:onClick="onClickStop"/>
+        android:layout_margin="8dp"
+        android:onClick="onClickStop"
+        android:background="@drawable/button_style"/>
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:text="@string/circle"
         android:id="@+id/circle"
         android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_margin="10dp"
-        android:onClick="onClickCircle"/>
+        android:layout_alignParentEnd="true"
+        android:textColor="@android:color/white"
+        android:layout_margin="8dp"
+        android:onClick="onClickCircle"
+        android:background="@drawable/button_style"/>
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:id="@+id/clearTimer"
-        android:background="@android:drawable/ic_delete"
-        android:layout_above="@+id/circle_list"
-        android:layout_alignRight="@+id/circle"
-        android:layout_alignEnd="@+id/circle"
-        android:onClick="onClickClear" />
+        android:text="@string/clear"
+        android:background="#505050"
+        android:textColor="@android:color/white"
+        android:onClick="onClickClear"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="8dp"/>
 
 </RelativeLayout>

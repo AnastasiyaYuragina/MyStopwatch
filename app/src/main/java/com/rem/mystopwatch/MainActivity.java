@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
         TextView timeView = (TextView) findViewById(R.id.time_view);
         circleList = (ListView) findViewById(R.id.circle_list);
         stopwatch = new Stopwatch(timeView);
+
+        adapter = new ArrayAdapter<>(MainActivity.this, R.layout.item, itemArrayList);
     }
 
     public void onClickStart(View view) {
@@ -34,16 +36,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickCircle(View view) {
-        itemArrayList.add(0, stopwatch.circleStopwatch());
-        adapter = new ArrayAdapter<>(MainActivity.this, R.layout.item, itemArrayList);
-        circleList.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+        if (stopwatch.isWork()) {
+            itemArrayList.add(0, stopwatch.circleStopwatch());
+            circleList.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+        }
     }
 
     public void onClickClear(View view) {
         stopwatch.clearStopwatch();
         itemArrayList.clear();
-        adapter = new ArrayAdapter<>(MainActivity.this, R.layout.item, itemArrayList);
         circleList.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }

@@ -11,7 +11,6 @@ import java.util.GregorianCalendar;
  *
  */
 class Stopwatch {
-
     private long startTime;
     private long millis;
     private int seconds;
@@ -20,6 +19,10 @@ class Stopwatch {
     private TextView view;
     private Handler handler;
     private boolean isWork;
+
+    public boolean isWork() {
+        return isWork;
+    }
 
     Stopwatch(TextView view) {
         this.view = view;
